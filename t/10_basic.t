@@ -1,7 +1,9 @@
 use strict;
 use warnings;
 use WWW::KGS::Top100;
-use Test::More tests => 5;
+use Test::More tests => 6;
+
+can_ok 'WWW::KGS::Top100', qw( new players );
 
 my $top100 = WWW::KGS::Top100->new;
 

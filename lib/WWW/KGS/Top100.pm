@@ -14,7 +14,8 @@ sub new {
 }
 
 sub players {
-    $_[0]->new->parse;
+    my $class = shift;
+    $class->new->parse(@_);
 }
 
 sub base_uri {
@@ -41,7 +42,7 @@ sub _build_parser {
         process '//table[@class="grid"]//following-sibling::tr', 'players[]' => scraper {
             process '//td[1]', 'position' => 'TEXT';
             process '//td[2]//a', 'name' => 'TEXT';
-            process '//td[2]//a', link => '@href';
+            process '//td[2]//a', 'link' => '@href';
             process '//td[3]', 'rank' => 'TEXT';
         };
         result 'players';
