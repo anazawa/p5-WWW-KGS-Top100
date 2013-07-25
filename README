@@ -1,0 +1,61 @@
+NAME
+    WWW::KGS::Top100 - Top 100 KGS Players
+
+SYNOPSIS
+      use WWW::KGS::Top100;
+      my $players = WWW::KGS::Top100->players;
+
+DESCRIPTION
+  CLASS METHODS
+    $top100 = WWW::KGS::Top100->new
+        Creates a "WWW::KGS::Top100" object. The possible parameters are:
+
+        base_uri
+            Defaults to "http://www.gokgs.com/top100.jsp".
+
+        user_agent
+            This parameter is used to construct a Web::Scraper object.
+
+    $players = WWW::KGS::Top100->players
+        A shortcut for:
+
+          my $players = WWW::KGS::Top100->new->parse;
+
+  INSTANCE METHODS
+    $players = $top100->parse
+        Returns an array reference of hash references which represents the
+        top 100 KGS players.
+
+          my $players = $top100->parse;
+          # => [
+          #     {
+          #         position => 1,
+          #         name     => 'foo',
+          #         rank     => '9d',
+          #         link     => 'http://www.gokgs.com/graphPage.jsp?user=foo',
+          #     },
+          #     {
+          #         position => 2,
+          #         name     => 'bar',
+          #         rank     => '9d',
+          #         link     => 'http://www.gokgs.com/graphPage.jsp?user=bar',
+          #     },
+          #     ...
+          #     {
+          #         position => 100,
+          #         name     => 'baz',
+          #         rank     => '6d',
+          #         link     => 'http://www.gokgs.com/graphPage.jsp?user=baz',
+          #     },
+          # ]
+
+SEE ALSO
+    WWW::KGS::GameArchives
+
+AUTHOR
+    Ryo Anazawa (anazawa@cpan.org)
+
+LICENSE
+    This module is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself. See perlartistic.
+
