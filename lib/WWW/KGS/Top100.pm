@@ -15,7 +15,7 @@ sub new {
 
 sub players {
     my $class = shift;
-    $class->new->parse(@_);
+    $class->new->parse(@_)->{players};
 }
 
 sub base_uri {
@@ -45,7 +45,6 @@ sub _build_parser {
             process '//td[2]//a', 'link' => '@href';
             process '//td[3]', 'rank' => 'TEXT';
         };
-        result 'players';
     };
 
     $parser->user_agent( $self->user_agent ) if $self->has_user_agent;
@@ -106,12 +105,12 @@ A shortcut for:
 
 =over 4
 
-=item $players = $top100->parse
+=item $result = $top100->parse
 
 Returns an array reference of hash references which represents the top 100
 KGS players.
 
-  my $players = $top100->parse;
+  my $players = $top100->parse->{players};
   # => [
   #     {
   #         position => 1,
